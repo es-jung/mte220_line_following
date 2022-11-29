@@ -142,21 +142,17 @@ void Timer1_ISR(void);
 */
 
 // F06 settings (to be customized by each group)
-//left 1ms CCW
-#define SERVO_LEFT_1MS	(uns16) 2025//2500  // 2500 ticks for 1 ms
-#define SERVO_LEFT_1MS_SLOWER (uns16) 
-//right 1ms CCW
+//left 1ms
+#define SERVO_LEFT_1MS	(uns16) 2500//2500  // 2500 ticks for 1 ms
+#define SERVO_LEFT_1MS_SLOWER (uns16) 3250
+//right 1ms
 #define SERVO_RIGHT_1MS  (uns16) 2250//2250
-#define SERVO_RIGHT_1MS_SLOWER (uns16)
-//stop defs
-#define SERVO_LEFT_STOP	(uns16) 3410  // 3410 ticks for 1.5 ms 1.364/1.5*3750
-#define SERVO_RIGHT_STOP (uns16) 3525  // 3750 ticks for 1.5 ms
-//2ms CW
-#define SERVO_2MS	(uns16)4800//5375  // 5000 ticks for 2 ms
-#define SERVO_2MS_SLOWER	(uns16)4800//5375  
+#define SERVO_RIGHT_1MS_SLOWER (uns16) 2925
 
-//left forward = ccw
-//right forward = cw
+#define SERVO_LEFT_STOP	(uns16)3525  // 3410 ticks for 1.5 ms 1.364/1.5*3750
+#define SERVO_RIGHT_STOP (uns16)3410 // 3750 ticks for 1.5 ms
+#define SERVO_2MS	(uns16)5375  // 5000 ticks for 2 ms
+#define SERVO_2MS_SLOWER (uns16) 3760
 
 
 //;**********************************************************************
@@ -200,24 +196,20 @@ bit	servo_phase_bit @ servo_status.1;
 // Turn servos on and off
 #define  UseServos \
     servo_on_bit = 1;
-
 #define  LeftServoOn \
     SetLeft(SERVO_LEFT_1MS); 
 #define  LeftServoOff \
     SetLeft(SERVO_LEFT_STOP);
-
 #define  RightServoOn \
     SetRight(SERVO_2MS);
 #define  RightServoOff \
     SetRight(SERVO_RIGHT_STOP);
-
 #define  BothServosOn \
-    SetLeft(SERVO_LEFT_1MS_SLOWER); \
-    SetRight(SERVO_2MS_SLOWER);
+    SetLeft(SERVO_LEFT_1MS); \
+    SetRight(SERVO_2MS);
 #define  BothServosOff \
     SetLeft(SERVO_LEFT_STOP); \
     SetRight(SERVO_RIGHT_STOP);
-
 #define Stop \
     BothServosOff
 #define GoForward \

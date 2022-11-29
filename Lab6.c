@@ -51,8 +51,9 @@ void main(void)
     uns8 analog_value;  // current ADC value
 
     Initialization();
-
-    // initially both servos are on
+	WaitForButton();
+	
+	// initially both servos are on
     UseServos         // (syntax of "call" is correct without () or ;)
     BothServosOn
 
@@ -60,13 +61,13 @@ void main(void)
     {
         analog_value = AnalogConvert(ADC_IR_SENSOR);  // get analog value from IR sensor diff amp
 
-        if ( analog_value < 0x66 )  // 0x66 is 2V for 10-bit ADC with 2 LSB dropped
+        if ( analog_value < 0x76 )  // 0x66 is 2V for 10-bit ADC with 2 LSB dropped
         {
             // left servo only
             LeftServoOn
             RightServoOff
         }
-        else if ( analog_value > 0x99 )  // 0x99 is 3V for 10-bit ADC with 2 LSB dropped
+        else if ( analog_value > 0x90 )  // 0x99 is 3V for 10-bit ADC with 2 LSB dropped
         {
             // right servo only
             RightServoOn
